@@ -161,7 +161,7 @@ twistlock:
 
 
 eck-operator:
-  enabled: false
+  enabled: true
   git:
     repo: https://github.com/recarmona/eck-operator.git
   values:
@@ -170,7 +170,7 @@ eck-operator:
       tag: 1.4.0
 
 jaeger:
-  enabled: false
+  enabled: true
   git:
     repo: https://github.com/recarmona/jaeger.git
   values:
@@ -206,7 +206,7 @@ jaeger:
         log-level: info
 
 istio-operator:
-  enabled: false
+  enabled: true
   git:
     repo: https://github.com/recarmona/eck-operator.git
   values:

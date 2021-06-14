@@ -210,7 +210,7 @@ jaeger:
       options: 
         log-level: info
 
-istio-operator:
+istiooperator:
   enabled: true
   git:
     repo: https://github.com/recarmona/istio-operator.git

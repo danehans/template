@@ -52,7 +52,7 @@ istio:
 
 kiali:
   enabled: true
-    git:
+  git:
     repo: https://github.com/recarmona/kiali.git
   values:
     image:

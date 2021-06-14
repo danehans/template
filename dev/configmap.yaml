@@ -49,14 +49,19 @@ istio:
   values:
     hub: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/istio-1.8
     tag: 1.8.4
-    kiali:
-      image:
-        name: kiali
-        hub: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/kiali
-        tag: v1.23.0
-      dashboard:
-        auth:
-          strategy: "anonymous"
+
+kiali:
+  enabled: true
+    git:
+    repo: https://github.com/recarmona/kiali.git
+  values:
+    image:
+      name: kiali
+      hub: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/kiali
+      tag: v1.23.0
+    dashboard:
+      auth:
+        strategy: "anonymous"
 
 clusterAuditor:
   enabled: true
@@ -212,3 +217,23 @@ istio-operator:
   values:
     hub: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/istio-1.8
     tag: 1.8.4
+
+kibana:
+  enabled: true
+  git:
+    repo: https://github.com/recarmona/elasticsearch-kibana.git
+  values:
+    image:
+      repository: harbor.gsoftinnovation.net/ironbank/ironbank/elastic/kibana/kibana
+      tag: 7.10.2
+
+elastic-operator:
+  enabled: true
+  git:
+    repo: https://github.com/recarmona/elasticsearch-kibana.git
+  values:
+    image:
+    repository: harbor.gsoftinnovation.net/ironbank/ironbank/elastic/eck-operator/eck-operator
+    tag: 1.4.0
+    pullPolicy: IfNotPresent
+

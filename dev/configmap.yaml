@@ -7,6 +7,8 @@ flux:
 
 logging:
   enabled: true
+  git:
+    repo: https://github.com/recarmona/elasticsearch-kibana.git
   values:
     elasticsearch:
       master:
@@ -27,12 +29,16 @@ logging:
           limits: {}
 
 fluentbit:
+  git:
+    repo: https://github.com/recarmona/fluentbit.git
   values:
     securityContext:
       privileged: true
 
 istio:
   enabled: true
+  git:
+    repo: https://github.com/recarmona/istio-controlplane.git
   values:
     kiali:
       dashboard:
@@ -41,6 +47,8 @@ istio:
 
 clusterAuditor:
   enabled: true
+  git:
+    repo: https://github.com/recarmona/cluster-auditor.git
   values:
     resources:
       requests:
@@ -50,6 +58,8 @@ clusterAuditor:
 
 monitoring:
   enabled: true
+  git:
+    repo: https://github.com/recarmona/monitoring.git
   values:
     alertmanager:
       alertmanagerSpec:
@@ -92,6 +102,8 @@ monitoring:
 
 gatekeeper:
   enabled: true
+  git:
+    repo: https://github.com/recarmona/policy.git
   values:
     replicas: 1
     resources:
@@ -102,6 +114,8 @@ gatekeeper:
 
 twistlock:
   enabled: false
+  git:
+    repo: https://github.com/recarmona/twistlock.git
   values:
     console:
       persistence:

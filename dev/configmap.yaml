@@ -165,7 +165,7 @@ twistlock:
         size: 5Gi
 
 
-eck-operator:
+elastic-operator:
   enabled: true
   git:
     repo: https://github.com/recarmona/eck-operator.git
@@ -227,13 +227,4 @@ kibana:
       repository: harbor.gsoftinnovation.net/ironbank/ironbank/elastic/kibana/kibana
       tag: 7.10.2
 
-elastic-operator:
-  enabled: true
-  git:
-    repo: https://github.com/recarmona/elasticsearch-kibana.git
-  values:
-    image:
-    repository: harbor.gsoftinnovation.net/ironbank/ironbank/elastic/eck-operator/eck-operator
-    tag: 1.4.0
-    pullPolicy: IfNotPresent
 

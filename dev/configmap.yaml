@@ -208,7 +208,7 @@ jaeger:
 istio-operator:
   enabled: true
   git:
-    repo: https://github.com/recarmona/eck-operator.git
+    repo: https://github.com/recarmona/istio-operator.git
   values:
     hub: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/istio-1.8
     tag: 1.8.4

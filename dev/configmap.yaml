@@ -10,6 +10,9 @@ logging:
   git:
     repo: https://github.com/recarmona/elasticsearch-kibana.git
   values:
+    image:
+      repository: harbor.gsoftinnovation.net/ironbank/ironbank/elastic/elasticsearch/elasticsearch
+      tag: 7.10.0
     elasticsearch:
       master:
         count: 1
@@ -32,6 +35,10 @@ fluentbit:
   git:
     repo: https://github.com/recarmona/fluentbit.git
   values:
+    image:
+      repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/fluent/fluent-bit
+      pullPolicy: Always
+      tag: 1.7.4
     securityContext:
       privileged: true
 
@@ -40,7 +47,13 @@ istio:
   git:
     repo: https://github.com/recarmona/istio-controlplane.git
   values:
+    hub: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/istio-1.8
+    tag: 1.8.4
     kiali:
+      image:
+        name: kiali
+        hub: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/kiali
+        tag: v1.23.0
       dashboard:
         auth:
           strategy: "anonymous"
@@ -50,6 +63,10 @@ clusterAuditor:
   git:
     repo: https://github.com/recarmona/cluster-auditor.git
   values:
+    image:
+      repo: harbor.gsoftinnovation.net/ironbank/ironbank/cluster-auditor/opa-collector
+      tag: 0.3.2
+      imagePullPolicy: Always
     resources:
       requests:
         cpu: 100m
@@ -62,6 +79,9 @@ monitoring:
     repo: https://github.com/recarmona/monitoring.git
   values:
     alertmanager:
+      image:
+        repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/alertmanager
+        tag: v0.21.0
       alertmanagerSpec:
         resources:
           requests:
@@ -69,6 +89,9 @@ monitoring:
             memory: 200Mi
           limits: {}
     prometheusOperator:
+      image:
+        repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/coreos/prometheus-operator
+        tag: v0.42.1
       resources:
         requests:
           cpu: 250m
@@ -82,18 +105,27 @@ monitoring:
             memory: 200Mi
           limits: {}
     grafana:
+      image:
+        repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/grafana/grafana
+        tag: 7.1.3-1
       resources:
         requests:
           cpu: 100m
           memory: 128Mi
         limits: {}
     kubeStateMetrics:
+      image:
+        repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/coreos/kube-state-metrics
+        tag: v1.9.7
       resources:
         requests:
           cpu: 10m
           memory: 32Mi
         limits: {}
     nodeExporter:
+      image:
+        repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/node-exporter 
+        tag: v1.0.1
       resources:
         requests:
           cpu: 100m
@@ -105,6 +137,9 @@ gatekeeper:
   git:
     repo: https://github.com/recarmona/policy.git
   values:
+    image:
+      repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/openpolicyagent/gatekeeper
+      release: v3.3.0
     replicas: 1
     resources:
       requests:
@@ -118,5 +153,62 @@ twistlock:
     repo: https://github.com/recarmona/twistlock.git
   values:
     console:
+      image:
+        repository: harbor.gsoftinnovation.net/ironbank/ironbank/twistlock/console/console
+        tag: 21.04.412
       persistence:
         size: 5Gi
+
+
+eck-operator:
+  enabled: false
+  git:
+    repo: https://github.com/recarmona/eck-operator.git
+  values:
+    image:
+      repository: harbor.gsoftinnovation.net/ironbank/ironbank/elastic/eck-operator/eck-operator
+      tag: 1.4.0
+
+jaeger:
+  enabled: false
+  git:
+    repo: https://github.com/recarmona/jaeger.git
+  values:
+    allInOne:
+      image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/all-in-one:1.22.0
+      annotations:
+        sidecar.istio.io/inject: "true"
+        traffic.sidecar.istio.io/includeInboundPorts: "16686"
+      options: 
+        log-level: info 
+        collector:
+          zipkin:
+            host-port: ":9411"
+    agent:
+      maxReplicas: 3
+      image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-agent:1.22.0
+      options: 
+        log-level: info
+    ingester:
+      maxReplicas: 3
+      image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-ingestor:1.22.0
+      options: 
+        log-level: info
+    query:
+      maxReplicas: 3
+      image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-query:1.22.0
+      options: 
+        log-level: info 
+    collector:
+      maxReplicas: 3
+      image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-collector:1.22.0
+      options: 
+        log-level: info
+
+istio-operator:
+  enabled: false
+  git:
+    repo: https://github.com/recarmona/eck-operator.git
+  values:
+    hub: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/istio-1.8
+    tag: 1.8.4

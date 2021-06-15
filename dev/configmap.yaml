@@ -61,8 +61,8 @@ kiali:
     repo: https://github.com/recarmona/kiali.git
   values:
     image:
-    repo: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/kiali/kiali-operator
-    tag: v1.32.0
+      repo: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/kiali/kiali-operator
+      tag: v1.32.0
     
     image:
       name: kiali
@@ -93,7 +93,6 @@ monitoring:
     repo: https://github.com/recarmona/monitoring.git
   values:
     alertmanager:
-      enabled: true
       image:
         repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/alertmanager
         tag: v0.21.0
@@ -117,7 +116,6 @@ monitoring:
             repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jet/kube-webhook-certgen
             tag: v1.5.1
     prometheus:
-      enabled: true
       image:
       repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/prometheus
       tag: v2.22.0

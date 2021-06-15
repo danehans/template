@@ -199,9 +199,9 @@ jaeger:
   git:
     repo: https://github.com/recarmona/jaeger.git
   values:
-  image:
-    repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-operator
-    tag: 1.22.0
+    image:
+      repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-operator
+      tag: 1.22.0
 
     allInOne:
       image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/all-in-one:1.22.0

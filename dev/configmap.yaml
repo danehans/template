@@ -64,10 +64,10 @@ kiali:
     repo: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/kiali/kiali-operator
     tag: v1.32.0
     
-    #image:
-    #  name: kiali
-    #  hub: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/kiali
-    #  tag: v1.23.0
+    image:
+      name: kiali
+      hub: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/kiali
+      tag: v1.23.0
     dashboard:
       auth:
         strategy: "anonymous"

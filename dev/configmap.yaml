@@ -203,36 +203,36 @@ jaeger:
     repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-operator
     tag: 1.22.0
 
-      allInOne:
-        image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/all-in-one:1.22.0
-        annotations:
-          sidecar.istio.io/inject: "true"
-          traffic.sidecar.istio.io/includeInboundPorts: "16686"
-        options: 
-          log-level: info 
-          collector:
-            zipkin:
-              host-port: ":9411"
-      agent:
-        maxReplicas: 3
-        image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-agent:1.22.0
-        options: 
-          log-level: info
-      ingester:
-        maxReplicas: 3
-        image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-ingestor:1.22.0
-        options: 
-          log-level: info
-      query:
-        maxReplicas: 3
-        image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-query:1.22.0
-        options: 
-          log-level: info 
-      collector:
-        maxReplicas: 3
-        image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-collector:1.22.0
-        options: 
-          log-level: info
+    allInOne:
+      image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/all-in-one:1.22.0
+      annotations:
+        sidecar.istio.io/inject: "true"
+        traffic.sidecar.istio.io/includeInboundPorts: "16686"
+      options: 
+        log-level: info 
+        collector:
+          zipkin:
+            host-port: ":9411"
+    agent:
+      maxReplicas: 3
+      image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-agent:1.22.0
+      options: 
+        log-level: info
+    ingester:
+      maxReplicas: 3
+      image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-ingestor:1.22.0
+      options: 
+        log-level: info
+    query:
+      maxReplicas: 3
+      image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-query:1.22.0
+      options: 
+        log-level: info 
+    collector:
+      maxReplicas: 3
+      image: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jaegertracing/jaeger-collector:1.22.0
+      options: 
+        log-level: info
 
 istiooperator:
   enabled: true

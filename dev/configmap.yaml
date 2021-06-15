@@ -93,6 +93,7 @@ monitoring:
     repo: https://github.com/recarmona/monitoring.git
   values:
     alertmanager:
+      enabled: true
       image:
         repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/alertmanager
         tag: v0.21.0
@@ -116,6 +117,7 @@ monitoring:
             repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jet/kube-webhook-certgen
             tag: v1.5.1
     prometheus:
+      enabled: true
       image:
       repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/prometheus
       tag: v2.22.0

@@ -179,7 +179,7 @@ twistlock:
         size: 5Gi
 
 
-elasticoperator:
+eckoperator:
   enabled: true
   git:
     repo: https://github.com/recarmona/eck-operator.git

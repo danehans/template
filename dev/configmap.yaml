@@ -62,7 +62,7 @@ kiali:
   values:
     image:
     repo: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/kiali/kiali-operator
-      tag: v1.32.0
+    tag: v1.32.0
     
     #image:
     #  name: kiali

@@ -95,10 +95,10 @@ monitoring:
     repo: https://github.com/recarmona/monitoring.git
   values:
     alertmanager:
-      enabled: true
-      image:
-      repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/alertmanager
-      tag: v0.21.0
+        enabled: true
+        image:
+        repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/alertmanager
+        tag: v0.21.0
    
 
     prometheusOperator:
@@ -126,15 +126,15 @@ monitoring:
         
 
     prometheus:
-      image:
-        repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/prometheus
-        tag: v2.22.0
-      prometheusSpec:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 200Mi
-          limits: {}
+        image:
+          repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/prometheus
+          tag: v2.22.0
+        prometheusSpec:
+         resources:
+            requests:
+             cpu: 100m
+             memory: 200Mi
+            limits: {}
     
 
 

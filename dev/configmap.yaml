@@ -99,12 +99,7 @@ monitoring:
       image:
       repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/alertmanager
       tag: v0.21.0
-       alertmanagerSpec:
-         resources:
-           requests:
-             cpu: 100m
-             memory: 200Mi
-           limits: {}
+   
 
     prometheusOperator:
       enabled: true

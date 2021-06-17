@@ -95,31 +95,22 @@ monitoring:
     repo: https://github.com/recarmona/monitoring.git
   values:
     alertmanager:
-      image:
-        repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/alertmanager
-        tag: v0.21.0
-      alertmanagerSpec:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 200Mi
-          limits: {}
+      enabled: true
+       image:
+         repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/alertmanager
+         tag: v0.21.0
+       alertmanagerSpec:
+         resources:
+           requests:
+             cpu: 100m
+             memory: 200Mi
+           limits: {}
 
     prometheusOperator:
       enabled: true
       image:
        repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/coreos/prometheus-operator
        tag: v0.42.1
-      admissionWebhooks:
-        failurePolicy: Fail
-        enabled: true
-        patch:
-          enabled: true
-          image:
-            repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jet/kube-webhook-certgen
-            tag: v1.5.1
-      
-      serviceMonitor:  
       configmapReloadImage:
         repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jimmidyson/configmap-reload
         tag: v0.4.0
@@ -128,10 +119,21 @@ monitoring:
         repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/coreos/prometheus-config-reloader
         tag: v0.42.1
 
+
+      admissionWebhooks:
+        failurePolicy: Fail
+        enabled: true
+        patch:
+          enabled: true
+          image:
+            repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/jet/kube-webhook-certgen
+            tag: v1.5.1
+        
+
     prometheus:
       image:
-      repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/prometheus
-      tag: v2.22.0
+        repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/prometheus
+        tag: v2.22.0
       prometheusSpec:
         resources:
           requests:

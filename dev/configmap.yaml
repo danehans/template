@@ -97,8 +97,8 @@ monitoring:
     alertmanager:
       enabled: true
        image:
-         repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/alertmanager
-         tag: v0.21.0
+        repository: harbor.gsoftinnovation.net/ironbank/ironbank/opensource/prometheus/alertmanager
+        tag: v0.21.0
        alertmanagerSpec:
          resources:
            requests:

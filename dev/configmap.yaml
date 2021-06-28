@@ -1,5 +1,11 @@
 hostname: bigbang.dev
 
+registryCredentials:
+  registry: harbor.gsoftinnovation.net/ironbank
+  username: "admin"
+  password: "StrongAdminP@s5W0$d"
+
+
 flux:
   interval: 1m
   rollback:

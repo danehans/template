@@ -28,7 +28,14 @@ spec:
     name: environment-repo
   path: ./dev
   prune: true
+<<<<<<< HEAD
   decryption:
     provider: sops
     secretRef:
       name: sops-gpg
+=======
+#  decryption:
+#    provider: sops
+#    secretRef:
+#      name: sops-gpg
+>>>>>>> 28c9109bc4920566404992a1bccd575d26851b33

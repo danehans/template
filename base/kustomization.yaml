@@ -1,11 +1,7 @@
 # When updating the version of BigBang, make sure to update
 #   both the bases reference and the GitRepository reference
 bases:
-<<<<<<< HEAD
-- git::https://github.com/recarmona/bigbang.git//base?ref=1.9.1
-=======
 - git::https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base?ref=1.11.0
->>>>>>> 28c9109bc4920566404992a1bccd575d26851b33
 resources:
 - bigbang-dev-cert.yaml
 configMapGenerator:
@@ -23,8 +19,4 @@ patchesStrategicMerge:
   spec:
     ref:
       $patch: replace
-<<<<<<< HEAD
-      semver: "1.9.1"
-=======
       semver: "1.11.0"
->>>>>>> 28c9109bc4920566404992a1bccd575d26851b33

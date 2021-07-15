@@ -10,9 +10,9 @@ metadata:
   namespace: bigbang
 spec:
   interval: 1m
-  url: https://github.com/recarmona/template.git
+  url: https://replace-with-your-git-repo.git
   ref:
-    branch: template-demo
+    branch: replace-with-your-branch
   secretRef:
     name: private-git
 ---
@@ -28,14 +28,7 @@ spec:
     name: environment-repo
   path: ./dev
   prune: true
-<<<<<<< HEAD
   decryption:
     provider: sops
     secretRef:
       name: sops-gpg
-=======
-#  decryption:
-#    provider: sops
-#    secretRef:
-#      name: sops-gpg
->>>>>>> 28c9109bc4920566404992a1bccd575d26851b33

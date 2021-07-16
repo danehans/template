@@ -33,11 +33,25 @@ fluentbit:
 
 istio:
   enabled: true
+  git:
+    repo: https://github.com/recarmona/istio-controlplane.git
+  values:
+    hub: registry1.dso.mil/ironbank/opensource/istio
+    tag: 1.10.1-bb.0
   values:
     kiali:
+    image:
+      name: kiali
+      hub: registry1.dso.mil/ironbank/opensource/kiali
+      tag: v1.36.1    
       dashboard:
         auth:
           strategy: "anonymous"
+     cni:
+     image:
+       name: install-cni
+       hub: registry1.dso.mil/ironbank/opensource/istio
+       tag: 1.10.1     
 
 clusterAuditor:
   enabled: true
@@ -106,3 +120,11 @@ twistlock:
     console:
       persistence:
         size: 5Gi
+
+istiooperator:
+  enabled: true
+  git:
+    repo: https://github.com/recarmona/istio-operator.git
+  values:
+    hub: registry1.dso.mil/ironbank/opensource/istio
+    tag: 1.10.1-bb.0

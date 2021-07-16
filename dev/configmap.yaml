@@ -37,7 +37,7 @@ istio:
     repo: https://github.com/recarmona/istio-controlplane.git
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio
-    tag: 1.10.1-bb.0
+    tag: 1.10.1
   values:
     kiali:
     image:
@@ -127,4 +127,4 @@ istiooperator:
     repo: https://github.com/recarmona/istio-operator.git
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio
-    tag: 1.10.1-bb.0
+    tag: 1.10.1

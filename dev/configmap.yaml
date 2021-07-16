@@ -47,11 +47,11 @@ istio:
       dashboard:
         auth:
           strategy: "anonymous"
-     cni:
-     image:
-       name: install-cni
-       hub: registry1.dso.mil/ironbank/opensource/istio
-       tag: 1.10.1     
+    cni:
+    image:
+      name: install-cni
+      hub: registry1.dso.mil/ironbank/opensource/istio
+      tag: 1.10.1     
 
 clusterAuditor:
   enabled: true

@@ -15,7 +15,6 @@ patchesStrategicMerge:
     name: bigbang
   spec:
     interval: 1m
-# Use the following three lines to test a new version of Big Bang without affecting other environments
     ref:
       $patch: replace
       semver: "1.10.0"

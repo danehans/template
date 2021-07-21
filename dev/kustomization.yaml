@@ -8,7 +8,7 @@ configMapGenerator:
 patchesStrategicMerge:
 ## Enable the line below if a secrets.enc.yaml is created in this directory
 # - secrets.enc.yaml
-- |-
+#- |-
   apiVersion: source.toolkit.fluxcd.io/v1beta1
   kind: GitRepository
   metadata:
@@ -16,11 +16,11 @@ patchesStrategicMerge:
   spec:
     interval: 1m
 # Use the following three lines to test a new version of Big Bang without affecting other environments
-#    ref:
-#      $patch: replace
-#      semver: "1.9.0"
-#     url: https://github.com/recamona/bigbang.git
-- |-
+    ref:
+      $patch: replace
+      semver: "1.10.0"
+     url: https://github.com/recamona/bigbang.git
+#- |-
   apiVersion: helm.toolkit.fluxcd.io/v2beta1
   kind: HelmRelease
   metadata:

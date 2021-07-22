@@ -36,7 +36,7 @@ istio:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
     path: "./chart" 
-    branch: "1.10.1-bb.0"
+    branch: "23-IstioCP-1.10.1"
     tag: 
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio
@@ -129,7 +129,7 @@ istiooperator:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
     path: "./chart"
-    branch: "1.10.1-bb.0"
+    branch: "2-IstioOp-1.10.1"
     tag:  
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio

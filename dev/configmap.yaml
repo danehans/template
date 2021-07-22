@@ -34,7 +34,9 @@ fluentbit:
 istio:
   enabled: true
   git:
-    repo: https://github.com/recarmona/istio-controlplane.git
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
+    path: "./chart" 
+    tag: "1.10.1-bb.0"
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio
     tag: 1.10.1
@@ -124,7 +126,9 @@ twistlock:
 istiooperator:
   enabled: true
   git:
-    repo: https://github.com/recarmona/istio-operator.git
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
+    path: "./chart"
+    tag: "1.10.1-bb.0"  
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio
     tag: 1.10.1

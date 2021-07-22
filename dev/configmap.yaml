@@ -128,3 +128,9 @@ istiooperator:
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio
     tag: 1.10.1
+
+addons:
+  authservice:
+    enabled: true
+    values:
+      replicaCount: 3

@@ -38,7 +38,7 @@ istio:
     key: ""
     cert: ""
   values:
-    hub: registry1.dso.mil/ironbank/opensource/istio/pilot
+    hub: registry1.dso.mil/ironbank/opensource/istio
     tag: 1.10.3
   values:
     kiali:
@@ -126,7 +126,7 @@ twistlock:
 istiooperator:
   enabled: true
   values:
-    hub: registry1.dso.mil/ironbank/opensource/istio/operator
+    hub: registry1.dso.mil/ironbank/opensource/istio
     tag: 1.10.3
 
 addons:

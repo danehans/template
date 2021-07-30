@@ -1,7 +1,7 @@
 # When updating the version of BigBang, make sure to update
 #   both the bases reference and the GitRepository reference
 bases:
-- git::https://github.com/recarmona/bigbang.git//base?ref=1.11.0
+- git::https://github.com/danehans/bigbang.git//base?ref=issue_610
 resources:
 - bigbang-dev-cert.yaml
 configMapGenerator:

@@ -35,25 +35,23 @@ istio:
   enabled: true
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
-    #path: "./chart" 
-    #branch: "23-IstioCP-1.10.1"
   values:
-    hub: registry1.dso.mil/ironbank/opensource/istio
-    tag: 1.10.1
+    hub: registry1.dso.mil/ironbank/opensource/istio/pilot
+    tag: 1.10.3
   values:
     kiali:
     image:
       name: kiali
-      hub: registry1.dso.mil/ironbank/opensource/kiali
-      tag: v1.36.1    
+      hub: registry1.dso.mil/ironbank/opensource/kiali/kiali
+      tag: v1.37.0
       dashboard:
         auth:
           strategy: "anonymous"
     cni:
     image:
       name: install-cni
-      hub: registry1.dso.mil/ironbank/opensource/istio
-      tag: 1.10.1     
+      hub: registry1.dso.mil/ironbank/opensource/istio/install-cni
+      tag: 1.10.3
 
 clusterAuditor:
   enabled: true
@@ -127,11 +125,9 @@ istiooperator:
   enabled: true
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
-    #path: "./chart"
-    #branch: "2-IstioOp-1.10.1"
   values:
-    hub: registry1.dso.mil/ironbank/opensource/istio
-    tag: 1.10.1
+    hub: registry1.dso.mil/ironbank/opensource/istio/operator
+    tag: 1.10.3
 
 addons:
   authservice:

@@ -33,6 +33,10 @@ fluentbit:
 
 istio:
   enabled: true
+  # See https://repo1.dso.mil/platform-one/big-bang/customers/template/-/issues/13
+  ingress:
+    key: ""
+    cert: ""
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
   values:

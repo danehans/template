@@ -37,8 +37,6 @@ istio:
   ingress:
     key: ""
     cert: ""
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio/pilot
     tag: 1.10.3
@@ -127,8 +125,6 @@ twistlock:
 
 istiooperator:
   enabled: true
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio/operator
     tag: 1.10.3

@@ -33,6 +33,10 @@ fluentbit:
 
 istio:
   enabled: true
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
+    tag: null
+    branch: "23-IstioCP-1.10.1"
   # See https://repo1.dso.mil/platform-one/big-bang/customers/template/-/issues/13
   ingress:
     key: ""
@@ -125,6 +129,10 @@ twistlock:
 
 istiooperator:
   enabled: true
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
+    tag: "./chart"
+    branch: "2-IstioOp-1.10.1"
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio
     tag: 1.10.3

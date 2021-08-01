@@ -12,7 +12,8 @@ spec:
   interval: 1m
   url: https://github.com/danehans/template.git
   ref:
-    branch: mac-dev
+    # Change to your template branch.
+    branch: ec2-172-31-8-154
   secretRef:
     name: private-git
 ---

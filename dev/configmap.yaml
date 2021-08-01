@@ -35,8 +35,8 @@ istio:
   enabled: true
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
-    tag: null
-    branch: "23-IstioCP-1.10.1"
+    tag: 1.8.4-bb.6
+    #branch: "23-IstioCP-1.10.1"
   # See https://repo1.dso.mil/platform-one/big-bang/customers/template/-/issues/13
   ingress:
     key: ""
@@ -133,8 +133,8 @@ istiooperator:
   enabled: true
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
-    tag: null
-    branch: "2-IstioOp-1.10.1"
+    tag: 1.8.4-bb.2
+    #branch: "2-IstioOp-1.10.1"
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio
     tag: 1.10.3

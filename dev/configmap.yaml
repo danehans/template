@@ -113,8 +113,6 @@ monitoring:
 
 gatekeeper:
   enabled: true
-  #git:
-  #  tag: 3.5.1-bb.5
   values:
     replicas: 1
     resources:
@@ -122,6 +120,12 @@ gatekeeper:
         cpu: 100m
         memory: 256Mi
       limits: {}
+      # The following caused cluster instability during initial testing.
+      #allowedDockerRegistries:
+      #match:
+      #excludedNamespaces:
+      #    - kube-system # ignored as the kubernetes distro cannot be controlled
+      #    - default
 
 twistlock:
   enabled: false

@@ -101,11 +101,12 @@ gatekeeper:
         cpu: 100m
         memory: 256Mi
       # The following caused cluster instability during initial testing.
-      #allowedDockerRegistries:
-      #match:
-      #excludedNamespaces:
-      #    - kube-system # ignored as the kubernetes distro cannot be controlled
-      #    - default
+    violations:
+      allowedDockerRegistries:
+        match:
+          excludedNamespaces:
+          - kube-system # ignored as the kubernetes distro cannot be controlled
+          - default
 
 twistlock:
   enabled: false

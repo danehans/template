@@ -125,5 +125,8 @@ istiooperator:
 addons:
   authservice:
     enabled: true
+    chains:
+      minimal:
+        callback_uri: "https://minimal.bigbang.dev"
     values:
       replicaCount: 3

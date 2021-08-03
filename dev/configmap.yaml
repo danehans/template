@@ -125,6 +125,9 @@ istiooperator:
 addons:
   authservice:
     enabled: true
+    git:
+      tag: null
+      branch: "14-istio.1.10-update"
     chains:
       minimal:
         callback_uri: "https://minimal.bigbang.dev"

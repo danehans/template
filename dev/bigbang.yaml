@@ -13,7 +13,7 @@ spec:
   url: https://github.com/danehans/template.git
   ref:
     # Change to your template branch.
-    branch: ec2-172-31-8-154_bb-master-wip-istio-patches
+    branch: ec2-172-31-8-154_bb-v1.13.0-wip-istio-patches
   secretRef:
     name: private-git
 ---

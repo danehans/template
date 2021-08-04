@@ -30,11 +30,12 @@ fluentbit:
 
 istio:
   git:
+    repo: https://github.com/danehans/istio-controlplane.git
     tag: null
-    branch: "23-IstioCP-1.10.1"
+    branch: istio_1.9.7
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio
-    tag: 1.10.3
+    tag: 1.9.7
   values:
     kiali:
     image:
@@ -48,7 +49,7 @@ istio:
     image:
       name: install-cni
       hub: registry1.dso.mil/ironbank/opensource/istio/install-cni
-      tag: 1.10.3
+      tag: 1.9.7
 
 clusterAuditor:
   values:
@@ -116,20 +117,9 @@ twistlock:
 
 istiooperator:
   git:
+    repo: https://github.com/danehans/istio-operator.git
     tag: null
-    branch: "2-IstioOp-1.10.1"
+    branch: istio_1.9.7
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio
-    tag: 1.10.3
-
-addons:
-  authservice:
-    enabled: true
-    git:
-      tag: null
-      branch: "14-istio.1.10-update"
-    chains:
-      minimal:
-        callback_uri: "https://minimal.bigbang.dev"
-    values:
-      replicaCount: 3
+    tag: 1.9.7

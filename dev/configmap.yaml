@@ -30,9 +30,8 @@ fluentbit:
 
 istio:
   git:
-    repo: https://github.com/danehans/istio-controlplane.git
     tag: null
-    branch: istio_1.9.7
+    branch: 34-update-istio-controlplane-components-to-1-9
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio
     tag: 1.9.7
@@ -117,9 +116,8 @@ twistlock:
 
 istiooperator:
   git:
-    repo: https://github.com/danehans/istio-operator.git
     tag: null
-    branch: istio_1.9.7
+    branch: 13-update-istio-operator-to-1-9
   values:
     hub: registry1.dso.mil/ironbank/opensource/istio
     tag: 1.9.7

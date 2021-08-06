@@ -77,14 +77,13 @@ gatekeeper:
       requests:
         cpu: 100m
         memory: 256Mi
-    # Uncomment to allow bookinfo in default ns.
-    #violations:
-      #allowedDockerRegistries:
-        #match:
-          #excludedNamespaces:
-          #- kube-system
-          #- istio-system
-          #- default
+    violations:
+      allowedDockerRegistries:
+        match:
+          excludedNamespaces:
+          - kube-system
+          - istio-system
+          - default
 
 twistlock:
   enabled: false

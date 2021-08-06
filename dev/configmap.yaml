@@ -6,7 +6,6 @@ flux:
     cleanupOnFail: false
 
 logging:
-  enabled: true
   values:
     elasticsearch:
       master:
@@ -16,7 +15,6 @@ logging:
         resources:
           requests:
             cpu: .5
-          limits: {}
       data:
         count: 1
         persistence:
@@ -24,52 +22,20 @@ logging:
         resources:
           requests:
             cpu: .5
-          limits: {}
 
 fluentbit:
   values:
     securityContext:
       privileged: true
 
-istio:
-  enabled: true
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
-    tag: null
-    branch: "23-IstioCP-1.10.1"
-  # See https://repo1.dso.mil/platform-one/big-bang/customers/template/-/issues/13
-  ingress:
-    key: ""
-    cert: ""
-  values:
-    hub: registry1.dso.mil/ironbank/opensource/istio
-    tag: 1.10.3
-  values:
-    kiali:
-    image:
-      name: kiali
-      hub: registry1.dso.mil/ironbank/opensource/kiali/kiali
-      tag: v1.37.0
-      dashboard:
-        auth:
-          strategy: "anonymous"
-    cni:
-    image:
-      name: install-cni
-      hub: registry1.dso.mil/ironbank/opensource/istio/install-cni
-      tag: 1.10.3
-
 clusterAuditor:
-  enabled: true
   values:
     resources:
       requests:
         cpu: 100m
         memory: .5Gi
-      limits: {}
 
 monitoring:
-  enabled: true
   values:
     alertmanager:
       alertmanagerSpec:
@@ -77,48 +43,47 @@ monitoring:
           requests:
             cpu: 100m
             memory: 200Mi
-          limits: {}
     prometheusOperator:
       resources:
         requests:
           cpu: 250m
           memory: 400Mi
-        limits: {}
     prometheus:
       prometheusSpec:
         resources:
           requests:
             cpu: 100m
             memory: 200Mi
-          limits: {}
     grafana:
       resources:
         requests:
           cpu: 100m
           memory: 128Mi
-        limits: {}
     kubeStateMetrics:
       resources:
         requests:
           cpu: 10m
           memory: 32Mi
-        limits: {}
     nodeExporter:
       resources:
         requests:
           cpu: 100m
           memory: 30Mi
-        limits: {}
 
 gatekeeper:
-  enabled: true
   values:
     replicas: 1
     resources:
       requests:
         cpu: 100m
         memory: 256Mi
-      limits: {}
+    violations:
+      allowedDockerRegistries:
+        match:
+          excludedNamespaces:
+          - kube-system
+          - istio-system
+          - default
 
 twistlock:
   enabled: false
@@ -126,19 +91,3 @@ twistlock:
     console:
       persistence:
         size: 5Gi
-
-istiooperator:
-  enabled: true
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
-    tag: null
-    branch: "2-IstioOp-1.10.1"
-  values:
-    hub: registry1.dso.mil/ironbank/opensource/istio
-    tag: 1.10.3
-
-addons:
-  authservice:
-    enabled: true
-    values:
-      replicaCount: 3

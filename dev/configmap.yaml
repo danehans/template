@@ -36,6 +36,7 @@ clusterAuditor:
         memory: .5Gi
 
 monitoring:
+  enabled: false
   values:
     alertmanager:
       alertmanagerSpec:

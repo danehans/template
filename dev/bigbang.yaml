@@ -12,7 +12,7 @@ spec:
   interval: 1m
   url: https://github.com/danehans/template.git
   ref:
-    branch: mac-dev
+    branch: mac_dev_with_cp_revision
   secretRef:
     name: private-git
 ---

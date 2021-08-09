@@ -92,3 +92,9 @@ twistlock:
     console:
       persistence:
         size: 5Gi
+
+istio:
+  git:
+    repo: https://github.com/danehans/istio-controlplane.git
+    tag: null
+    branch: revision_support

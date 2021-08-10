@@ -5,72 +5,6 @@ flux:
   rollback:
     cleanupOnFail: false
 
-logging:
-  values:
-    elasticsearch:
-      master:
-        count: 1
-        persistence:
-          size: 5Gi
-        resources:
-          requests:
-            cpu: .5
-      data:
-        count: 1
-        persistence:
-          size: 5Gi
-        resources:
-          requests:
-            cpu: .5
-
-fluentbit:
-  values:
-    securityContext:
-      privileged: true
-
-clusterAuditor:
-  values:
-    resources:
-      requests:
-        cpu: 100m
-        memory: .5Gi
-
-monitoring:
-  enabled: false
-  values:
-    alertmanager:
-      alertmanagerSpec:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 200Mi
-    prometheusOperator:
-      resources:
-        requests:
-          cpu: 250m
-          memory: 400Mi
-    prometheus:
-      prometheusSpec:
-        resources:
-          requests:
-            cpu: 100m
-            memory: 200Mi
-    grafana:
-      resources:
-        requests:
-          cpu: 100m
-          memory: 128Mi
-    kubeStateMetrics:
-      resources:
-        requests:
-          cpu: 10m
-          memory: 32Mi
-    nodeExporter:
-      resources:
-        requests:
-          cpu: 100m
-          memory: 30Mi
-
 gatekeeper:
   values:
     replicas: 1
@@ -86,9 +20,26 @@ gatekeeper:
           - istio-system
           - default
 
+kiali:
+  enabled: false
+
+jaeger:
+  enabled: false
+
+logging:
+  enabled: false
+
+fluentbit:
+  enabled: false
+
+clusterAuditor:
+  enabled: false
+
+monitoring:
+  enabled: false
+
+eckoperator:
+  enabled: false
+
 twistlock:
   enabled: false
-  values:
-    console:
-      persistence:
-        size: 5Gi

@@ -9,10 +9,10 @@ metadata:
   name: environment-repo
   namespace: bigbang
 spec:
-  interval: 1m
+  interval: 30s
   url: https://github.com/danehans/template.git
   ref:
-    branch: mac-dev
+    branch: mac-dev-bb-issue-654
   secretRef:
     name: private-git
 ---
@@ -22,7 +22,7 @@ metadata:
   name: environment
   namespace: bigbang
 spec:
-  interval: 1m
+  interval: 30s
   sourceRef:
     kind: GitRepository
     name: environment-repo

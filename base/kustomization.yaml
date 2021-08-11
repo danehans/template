@@ -1,7 +1,7 @@
 # When updating the version of BigBang, make sure to update
 #   both the bases reference and the GitRepository reference
 bases:
-- git::https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base?ref=1.13.0
+- git::https://github.com/danehans/big-bang.git//base?ref=22d07966c9788451e1226e8504a0bb7f317cf9cc
 configMapGenerator:
   - name: common
     behavior: merge
@@ -17,4 +17,5 @@ patchesStrategicMerge:
   spec:
     ref:
       $patch: replace
-      tag: "1.13.0"
+      tag: ""
+      branch: issue_654

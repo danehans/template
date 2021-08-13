@@ -1,0 +1,149 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  annotations:
+    meta.helm.sh/release-name: bigbang
+    meta.helm.sh/release-namespace: bigbang
+  creationTimestamp: "2021-08-17T03:36:59Z"
+  finalizers:
+  - finalizers.fluxcd.io
+  generation: 2
+  labels:
+    app.kubernetes.io/component: core
+    app.kubernetes.io/instance: bigbang
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: istio-operator-1-8-4
+    app.kubernetes.io/part-of: bigbang
+    app.kubernetes.io/version: 1.13.1
+    helm.toolkit.fluxcd.io/name: bigbang
+    helm.toolkit.fluxcd.io/namespace: bigbang
+  managedFields:
+  - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/part-of: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.toolkit.fluxcd.io/name: {}
+          f:helm.toolkit.fluxcd.io/namespace: {}
+      f:spec:
+        .: {}
+        f:chart:
+          .: {}
+          f:spec:
+            .: {}
+            f:chart: {}
+            f:sourceRef:
+              .: {}
+              f:kind: {}
+              f:name: {}
+              f:namespace: {}
+            f:version: {}
+        f:dependsOn: {}
+        f:install:
+          .: {}
+          f:remediation:
+            .: {}
+            f:retries: {}
+        f:rollback:
+          .: {}
+          f:timeout: {}
+        f:targetNamespace: {}
+        f:test: {}
+        f:upgrade:
+          .: {}
+          f:cleanupOnFail: {}
+          f:remediation:
+            .: {}
+            f:remediateLastFailure: {}
+            f:retries: {}
+        f:valuesFrom: {}
+    manager: Go-http-client
+    operation: Update
+    time: "2021-08-17T03:36:59Z"
+  - apiVersion: helm.toolkit.fluxcd.io/v2beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:finalizers:
+          .: {}
+          v:"finalizers.fluxcd.io": {}
+      f:spec:
+        f:chart:
+          f:spec:
+            f:interval: {}
+        f:interval: {}
+        f:rollback:
+          f:timeout: {}
+        f:timeout: {}
+      f:status:
+        .: {}
+        f:conditions: {}
+        f:failures: {}
+        f:helmChart: {}
+        f:observedGeneration: {}
+    manager: helm-controller
+    operation: Update
+    time: "2021-08-17T03:36:59Z"
+  name: istio-operator-1-8-4
+  namespace: bigbang
+  resourceVersion: "363029"
+  selfLink: /apis/helm.toolkit.fluxcd.io/v2beta1/namespaces/bigbang/helmreleases/istio-operator-1-8-4
+  uid: bdfe06b0-0ca4-4564-b950-4b9d59917251
+spec:
+  chart:
+    spec:
+      chart: ./chart
+      interval: 5m0s
+      sourceRef:
+        kind: GitRepository
+        name: istio-operator
+        namespace: bigbang
+      version: '*'
+  dependsOn:
+  - name: gatekeeper
+    namespace: bigbang
+  install:
+    remediation:
+      retries: 3
+  interval: 1m0s
+  rollback:
+    timeout: 10m0s
+  targetNamespace: istio-operator
+  test: {}
+  timeout: 10m0s
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      remediateLastFailure: true
+      retries: 3
+  valuesFrom:
+  - kind: Secret
+    name: bigbang-istio-operator-values
+    valuesKey: common
+  - kind: Secret
+    name: bigbang-istio-operator-values
+    valuesKey: defaults
+  - kind: Secret
+    name: bigbang-istio-operator-values
+    valuesKey: overlays
+status:
+  conditions:
+  - lastTransitionTime: "2021-08-17T03:36:59Z"
+    message: HelmChart 'bigbang/bigbang-istio-operator-1-8-4' is not ready
+    reason: ArtifactFailed
+    status: "False"
+    type: Ready
+  failures: 3
+  helmChart: bigbang/bigbang-istio-operator-1-8-4
+  observedGeneration: 2

@@ -12,7 +12,7 @@ spec:
   interval: 30s
   url: https://github.com/danehans/template.git
   ref:
-    branch: mac-dev-bb-issue-654
+    branch: istio_map_gw_pkg_v3
   secretRef:
     name: private-git
 ---

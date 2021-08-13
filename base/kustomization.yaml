@@ -1,7 +1,7 @@
 # When updating the version of BigBang, make sure to update
 #   both the bases reference and the GitRepository reference
 bases:
-- git::https://github.com/danehans/big-bang.git//base?ref=22d07966c9788451e1226e8504a0bb7f317cf9cc
+- git::https://github.com/danehans/big-bang.git//base?ref=f06fedb205305054444e77b1d1512c3976a69e06
 configMapGenerator:
   - name: common
     behavior: merge
@@ -18,4 +18,4 @@ patchesStrategicMerge:
     ref:
       $patch: replace
       tag: ""
-      branch: issue_654
+      branch: istio_map_gw_pkg_v3

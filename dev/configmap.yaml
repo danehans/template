@@ -1,18 +1,24 @@
 hostname: bigbang.dev
 
 istio:
-  enabled: true
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
-    path: "./chart"
-    tag: "1.9.7-bb.0"
+  enabled: false
 
-istiooperator:
-  enabled: true
+istiooperators:
+  # -- Toggle deployment of Istio Operator.
+#- enabled: false
+#  revision: ""
+#  git:
+#    repo: https://github.com/danehans/istio-operator.git
+#    path: "./chart"
+#    tag: ""
+#    branch: revision
+- enabled: false
+  revision: "1-9-7"
   git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
+    repo: https://github.com/danehans/istio-operator.git
     path: "./chart"
-    tag: "1.9.7-bb.0"
+    tag: ""
+    branch: revision
 
 flux:
   interval: 1m
@@ -20,6 +26,7 @@ flux:
     cleanupOnFail: false
 
 gatekeeper:
+  enabled: false
   values:
     replicas: 1
     resources:

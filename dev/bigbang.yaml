@@ -12,7 +12,7 @@ spec:
   interval: 30s
   url: https://github.com/danehans/template.git
   ref:
-    branch: mac-dev-bb-issue-654
+    branch: istios
   secretRef:
     name: private-git
 ---

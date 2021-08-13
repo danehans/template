@@ -1,25 +1,100 @@
 hostname: bigbang.dev
 
+#flux:
+#  interval: 1m
+#  rollback:
+#    cleanupOnFail: false
+
 istio:
   enabled: true
   git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
+    repo: https://github.com/danehans/istio-controlplane.git
     path: "./chart"
-    tag: "1.9.7-bb.0"
+    tag: null
+    branch: revision_support
+    ingressGateways:
+      public-ingressgateway:
+        type: "LoadBalancer"
+        kubernetesResourceSpec:
+          service:
+            externalIPs:
+            - 34.94.201.245
 
 istiooperator:
   enabled: true
   git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
+    repo: https://github.com/danehans/istio-operator.git
     path: "./chart"
-    tag: "1.9.7-bb.0"
+    tag: null
+    branch: revision
 
-flux:
-  interval: 1m
-  rollback:
-    cleanupOnFail: false
+istios:
+  default:
+    enabled: false
+    git:
+      repo: https://github.com/danehans/istio-controlplane.git
+      path: "./chart"
+      tag: null
+      branch: revision_support
+    ingressGateways:
+      public-ingressgateway:
+        type: "LoadBalancer"
+        kubernetesResourceSpec:
+          service:
+            externalIPs:
+            - 34.94.201.245
+    flux: {}
+    values: {}
+    postRenderers: []
+  1-11-1:
+    enabled: false
+    revision: 1-11-1
+    git:
+      repo: https://github.com/danehans/istio-controlplane.git
+      path: "./chart"
+      tag: null
+      branch: revision_support
+    ingressGateways:
+      public-ingressgateway:
+        type: "LoadBalancer"
+        kubernetesResourceSpec:
+          service:
+            externalIPs:
+            - 34.94.201.245
+    flux: {}
+    values:
+      tag: 1.11.1
+    postRenderers: []
+
+istiooperators:
+  default:
+    enabled: false
+    git:
+      repo: https://github.com/danehans/istio-operator.git
+      path: "./chart"
+      tag: null
+      branch: revision
+    flux: {}
+    values: {}
+    postRenderers: []
+  1-11-1:
+    enabled: false
+    revision: 1-11-1
+    git:
+      repo: https://github.com/danehans/istio-operator.git
+      path: "./chart"
+      tag: null
+      branch: revision
+    flux: {}
+    values:
+      tag: 1.11.1
+    postRenderers: []
+
+istiogateway:
+  enabled: false
 
 gatekeeper:
+  enabled: false
   values:
     replicas: 1
     resources:

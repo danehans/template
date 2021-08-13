@@ -1,0 +1,281 @@
+apiVersion: v1
+items:
+- apiVersion: install.istio.io/v1alpha1
+  kind: IstioOperator
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: istio-system-istio
+      meta.helm.sh/release-namespace: istio-system
+    creationTimestamp: "2021-09-10T22:10:47Z"
+    finalizers:
+    - istio-finalizer.install.istio.io
+    generation: 1
+    labels:
+      app.kubernetes.io/managed-by: Helm
+      helm.toolkit.fluxcd.io/name: istio
+      helm.toolkit.fluxcd.io/namespace: bigbang
+    name: istiocontrolplane
+    namespace: istio-system
+    resourceVersion: "2280"
+    uid: ae4c6fe9-f09d-4349-be0b-599b4785dbfc
+  spec:
+    components:
+      ingressGateways:
+      - enabled: false
+        k8s:
+          affinity: {}
+          nodeSelector: {}
+          podAnnotations: {}
+          resources: {}
+          service:
+            type: LoadBalancer
+          serviceAnnotations: {}
+          tolerations: []
+        label:
+          app: istio-ingressgateway
+          istio: ingressgateway
+        name: istio-ingressgateway
+        namespace: istio-system
+      - enabled: true
+        k8s:
+          service:
+            ports:
+            - name: status-port
+              nodePort: 30148
+              port: 15021
+              protocol: TCP
+              targetPort: 15021
+            - name: http2
+              nodePort: 30080
+              port: 80
+              protocol: TCP
+              targetPort: 8080
+            - name: https
+              nodePort: 30443
+              port: 443
+              protocol: TCP
+              targetPort: 8443
+            type: NodePort
+        label:
+          app: public-ingressgateway
+          istio: ingressgateway
+        name: public-ingressgateway
+        namespace: istio-system
+      pilot:
+        k8s:
+          affinity: {}
+          hpaSpec:
+            maxReplicas: 3
+            metrics:
+            - resource:
+                name: cpu
+                targetAverageUtilization: 60
+              type: Resource
+            minReplicas: 1
+            scaleTargetRef:
+              apiVersion: apps/v1
+              kind: Deployment
+              name: istiod
+          nodeSelector: {}
+          podAnnotations: {}
+          replicaCount: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 2Gi
+          serviceAnnotations: {}
+          strategy: {}
+          tolerations: []
+    hub: registry1.dso.mil/ironbank/opensource/istio
+    meshConfig:
+      accessLogFile: /dev/stdout
+      defaultConfig:
+        holdApplicationUntilProxyStarts: true
+        tracing:
+          sampling: 10
+        zipkinAddress: jaeger-collector.jaeger.svc:9411
+      enableTracing: false
+    profile: default
+    tag: 1.10.4
+    values:
+      global:
+        imagePullSecrets:
+        - private-registry
+        proxy:
+          resources:
+            limits:
+              cpu: 100m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+        proxy_init:
+          resources:
+            limits:
+              cpu: 100m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+      sidecarInjectorWebhook:
+        neverInjectSelector:
+        - matchExpressions:
+          - key: app.kubernetes.io/component
+            operator: In
+            values:
+            - fluentd-configcheck
+        rewriteAppHTTPProbe: true
+  status:
+    componentStatus:
+      Base:
+        status: HEALTHY
+      IngressGateways:
+        status: HEALTHY
+      Pilot:
+        status: HEALTHY
+    status: HEALTHY
+- apiVersion: install.istio.io/v1alpha1
+  kind: IstioOperator
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: istio-system-istio-1-11-1
+      meta.helm.sh/release-namespace: istio-system
+    creationTimestamp: "2021-09-10T22:16:53Z"
+    finalizers:
+    - istio-finalizer.install.istio.io
+    generation: 1
+    labels:
+      app.kubernetes.io/managed-by: Helm
+      helm.toolkit.fluxcd.io/name: istio-1-11-1
+      helm.toolkit.fluxcd.io/namespace: bigbang
+    name: istiocontrolplane-1-11-1
+    namespace: istio-system
+    resourceVersion: "4410"
+    uid: a069f2b6-a955-4be1-8655-86806a81f94e
+  spec:
+    components:
+      ingressGateways:
+      - enabled: false
+        k8s:
+          affinity: {}
+          nodeSelector: {}
+          podAnnotations: {}
+          resources: {}
+          service:
+            type: LoadBalancer
+          serviceAnnotations: {}
+          tolerations: []
+        label:
+          app: istio-ingressgateway
+          istio: ingressgateway
+        name: istio-ingressgateway
+        namespace: istio-system
+      - enabled: true
+        k8s:
+          service:
+            ports:
+            - name: status-port
+              nodePort: 30148
+              port: 15021
+              protocol: TCP
+              targetPort: 15021
+            - name: http2
+              nodePort: 30080
+              port: 80
+              protocol: TCP
+              targetPort: 8080
+            - name: https
+              nodePort: 30443
+              port: 443
+              protocol: TCP
+              targetPort: 8443
+            type: NodePort
+        label:
+          app: public-ingressgateway
+          istio: ingressgateway
+        name: public-ingressgateway
+        namespace: istio-system
+      pilot:
+        k8s:
+          affinity: {}
+          hpaSpec:
+            maxReplicas: 3
+            metrics:
+            - resource:
+                name: cpu
+                targetAverageUtilization: 60
+              type: Resource
+            minReplicas: 1
+            scaleTargetRef:
+              apiVersion: apps/v1
+              kind: Deployment
+              name: istiod-1-11-1
+          nodeSelector: {}
+          podAnnotations: {}
+          replicaCount: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 2Gi
+          serviceAnnotations: {}
+          strategy: {}
+          tolerations: []
+    hub: registry1.dso.mil/ironbank/opensource/istio
+    meshConfig:
+      accessLogFile: /dev/stdout
+      defaultConfig:
+        holdApplicationUntilProxyStarts: true
+        tracing:
+          sampling: 10
+        zipkinAddress: jaeger-collector.jaeger.svc:9411
+      enableTracing: false
+    profile: default
+    revision: 1-11-1
+    tag: 1.11.1
+    values:
+      global:
+        imagePullSecrets:
+        - private-registry
+        proxy:
+          resources:
+            limits:
+              cpu: 100m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+        proxy_init:
+          resources:
+            limits:
+              cpu: 100m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+      sidecarInjectorWebhook:
+        neverInjectSelector:
+        - matchExpressions:
+          - key: app.kubernetes.io/component
+            operator: In
+            values:
+            - fluentd-configcheck
+        rewriteAppHTTPProbe: true
+  status:
+    componentStatus:
+      Base:
+        status: HEALTHY
+      IngressGateways:
+        status: HEALTHY
+      Pilot:
+        status: HEALTHY
+    status: HEALTHY
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

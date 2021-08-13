@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: post-install-hook
+  namespace: istio-operator
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    helm.toolkit.fluxcd.io/name: istio-controlplane
+    helm.toolkit.fluxcd.io/namespace: bigbang
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    metadata:
+      name: post-install-hook
+      labels:
+        app.kubernetes.io/managed-by: Helm
+        helm.toolkit.fluxcd.io/name: istio-controlplane
+        helm.toolkit.fluxcd.io/namespace: bigbang
+    spec:
+      serviceAccountName: istio-operator
+      restartPolicy: Never
+      containers:
+      - name: hook
+        image: "registry1.dso.mil/ironbank/big-bang/base:8.4"
+        command: ["kubectl"]
+        args: ["rollout", "status", "deploy/istiod", "-n", "istio-system"]

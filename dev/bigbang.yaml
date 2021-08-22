@@ -12,7 +12,7 @@ spec:
   interval: 30s
   url: https://github.com/danehans/template.git
   ref:
-    branch: operator_map
+    branch: istio_map
   secretRef:
     name: private-git
 ---

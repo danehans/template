@@ -1,12 +1,132 @@
 hostname: bigbang.dev
 
-istio:
-  enabled: false
-
 flux:
   interval: 1m
   rollback:
     cleanupOnFail: false
+
+istio:
+  enabled: false
+  git:
+    repo: https://github.com/danehans/istio-controlplane.git
+    path: "./chart"
+    tag: null
+    branch: revision_support
+#  values:
+#    tag: 1.11.1
+  ingressGateways:
+    public-ingressgateway:
+      type: "NodePort"
+      kubernetesResourceSpec:
+        service:
+          ports:
+          - name: status-port
+            nodePort: 30148
+            port: 15021
+            protocol: TCP
+            targetPort: 15021
+          - name: http2
+            nodePort: 30080
+            port: 80
+            protocol: TCP
+            targetPort: 8080
+          - name: https
+            nodePort: 30443
+            port: 443
+            protocol: TCP
+            targetPort: 8443
+
+istiooperator:
+  enabled: false
+  git:
+    repo: https://github.com/danehans/istio-operator.git
+    path: "./chart"
+    tag: null
+    branch: revision
+#  values:
+#    tag: 1.11.1
+
+istios:
+  default:
+    enabled: false
+    git:
+      repo: https://github.com/danehans/istio-controlplane.git
+      path: "./chart"
+      tag: null
+      branch: revision_support
+    ingressGateways:
+      public-ingressgateway:
+        type: "NodePort"
+        kubernetesResourceSpec:
+          service:
+            ports:
+            - name: status-port
+              nodePort: 30148
+              port: 15021
+              protocol: TCP
+              targetPort: 15021
+            - name: http2
+              nodePort: 30080
+              port: 80
+              protocol: TCP
+              targetPort: 8080
+            - name: https
+              nodePort: 30443
+              port: 443
+              protocol: TCP
+              targetPort: 8443
+    gateways:
+      public:
+        ingressGateway: "public-ingressgateway"
+        hosts:
+        - "*.{{ .Values.hostname }}"
+        tls:
+          key: ""
+          cert: ""
+    flux: {}
+    values: {}
+    postRenderers: []
+  1-11-1:
+    enabled: false
+    revision: 1-11-1
+    git:
+      repo: https://github.com/danehans/istio-controlplane.git
+      path: "./chart"
+      tag: null
+      branch: revision_support
+    ingressGateways:
+      public-ingressgateway:
+        type: "NodePort"
+        kubernetesResourceSpec:
+          service:
+            ports:
+            - name: status-port
+              nodePort: 30148
+              port: 15021
+              protocol: TCP
+              targetPort: 15021
+            - name: http2
+              nodePort: 30080
+              port: 80
+              protocol: TCP
+              targetPort: 8080
+            - name: https
+              nodePort: 30443
+              port: 443
+              protocol: TCP
+              targetPort: 8443
+    gateways:
+      public:
+        ingressGateway: "public-ingressgateway"
+        hosts:
+        - "*.{{ .Values.hostname }}"
+        tls:
+          key: ""
+          cert: ""
+    flux: {}
+    values:
+      tag: 1.11.1
+    postRenderers: []
 
 istiooperators:
   default:
@@ -16,13 +136,21 @@ istiooperators:
       path: "./chart"
       tag: null
       branch: revision
-  canary:
+    flux: {}
+    values: {}
+    postRenderers: []
+  1-11-1:
     enabled: false
+    revision: 1-11-1
     git:
       repo: https://github.com/danehans/istio-operator.git
       path: "./chart"
       tag: null
       branch: revision
+    flux: {}
+    values:
+      tag: 1.11.1
+    postRenderers: []
 
 gatekeeper:
   enabled: false

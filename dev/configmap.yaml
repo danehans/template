@@ -1,57 +1,46 @@
 hostname: bigbang.dev
 
 flux:
-  interval: 1m
+  interval: 5s
   rollback:
     cleanupOnFail: false
 
-#istio:
-#  enabled: true
+istio:
+  enabled: true
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
+    path: "./chart"
+    tag: null
+    branch: main
+  ingressGateways:
+    public-ingressgateway:
+      type: "NodePort"
+      kubernetesResourceSpec:
+        service:
+          ports:
+          - name: status-port
+            nodePort: 30148
+            port: 15021
+            protocol: TCP
+            targetPort: 15021
+          - name: http2
+            nodePort: 30080
+            port: 80
+            protocol: TCP
+            targetPort: 8080
+          - name: https
+            nodePort: 30443
+            port: 443
+            protocol: TCP
+            targetPort: 8443
 
-#istios:
-#  canary:
-#    # -- Toggle deployment of Istio.
-#    enabled: true
-#    revision: 1-10-3
-#    git:
-#      repo: https://github.com/danehans/istio-controlplane.git
-#      path: "./chart"
-#      tag: null
-#      branch: revision_support
-#
-#    # -- Flux reconciliation overrides specifically for the Istio Package
-#    flux: {}
-#
-#    # -- Values to passthrough to the istio-controlplane chart: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
-#    values: {}
-#
-#    # -- Post Renderers.  See docs/postrenders.md
-#    postRenderers: []
-
-#istiooperators:
-#  default:
-#    enabled: true
-#    git:
-#      repo: https://github.com/danehans/istio-operator.git
-#      path: "./chart"
-#      tag: null
-#      branch: revision
-#  canary:
-#    enabled: true
-#    revision: 1-10-3
-#    git:
-#      repo: https://github.com/danehans/istio-operator.git
-#      path: "./chart"
-#      tag: null
-#      branch: revision
-    # -- Flux reconciliation overrides specifically for the Istio Operator Package
-#    flux: {}
-
-    # -- Values to passthrough to the istio-operator chart: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
-#    values: {}
-
-    # -- Post Renderers.  See docs/postrenders.md
-#    postRenderers: []
+istiooperator:
+  enabled: true
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
+    path: "./chart"
+    tag: null
+    branch: main
 
 gatekeeper:
   enabled: false

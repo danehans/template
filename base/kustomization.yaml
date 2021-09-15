@@ -1,7 +1,7 @@
 # When updating the version of BigBang, make sure to update
 #   both the bases reference and the GitRepository reference
 bases:
-- git::https://github.com/danehans/big-bang.git//base?ref=bddcddd590a46cc7b1646eafcdae19896d5b99c5
+- git::https://github.com/danehans/big-bang.git//base?ref=4ab4d5be92994b9ac9daa6f018c578ea9e1e7765
 configMapGenerator:
   - name: common
     behavior: merge

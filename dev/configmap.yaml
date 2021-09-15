@@ -1,12 +1,12 @@
 hostname: bigbang.dev
 
-#flux:
-#  interval: 1m
+flux:
+  interval: 15s
 #  rollback:
 #    cleanupOnFail: false
 
 istio:
-  enabled: true
+  enabled: false
   git:
     repo: https://github.com/danehans/istio-controlplane.git
     path: "./chart"
@@ -15,18 +15,23 @@ istio:
     ingressGateways:
       public-ingressgateway:
         type: "LoadBalancer"
-        kubernetesResourceSpec:
-          service:
-            externalIPs:
-            - 34.94.201.245
+        kubernetesResourceSpec: {}
+#          service:
+#            externalIPs:
+#            - 34.102.16.247
+#  values: {}
+  values:
+    tag: 1.11.1
 
 istiooperator:
-  enabled: true
+  enabled: false
   git:
     repo: https://github.com/danehans/istio-operator.git
     path: "./chart"
     tag: null
     branch: revision
+  values:
+    tag: 1.11.1
 
 istios:
   default:
@@ -39,16 +44,18 @@ istios:
     ingressGateways:
       public-ingressgateway:
         type: "LoadBalancer"
-        kubernetesResourceSpec:
-          service:
-            externalIPs:
-            - 34.94.201.245
+        kubernetesResourceSpec: {}
+#          service:
+#            externalIPs:
+#            - 34.102.16.247
     flux: {}
-    values: {}
+#    values: {}
+    values:
+      tag: 1.11.1
     postRenderers: []
-  1-11-1:
-    enabled: false
-    revision: 1-11-1
+  1-11-2:
+    enabled: true
+    revision: 1-11-2
     git:
       repo: https://github.com/danehans/istio-controlplane.git
       path: "./chart"
@@ -57,13 +64,10 @@ istios:
     ingressGateways:
       public-ingressgateway:
         type: "LoadBalancer"
-        kubernetesResourceSpec:
-          service:
-            externalIPs:
-            - 34.94.201.245
+        kubernetesResourceSpec: {}
     flux: {}
     values:
-      tag: 1.11.1
+      tag: 1.11.2
     postRenderers: []
 
 istiooperators:
@@ -75,11 +79,13 @@ istiooperators:
       tag: null
       branch: revision
     flux: {}
-    values: {}
+#    values: {}
+    values:
+      tag: 1.11.1
     postRenderers: []
-  1-11-1:
-    enabled: false
-    revision: 1-11-1
+  1-11-2:
+    enabled: true
+    revision: 1-11-2
     git:
       repo: https://github.com/danehans/istio-operator.git
       path: "./chart"
@@ -87,14 +93,14 @@ istiooperators:
       branch: revision
     flux: {}
     values:
-      tag: 1.11.1
+      tag: 1.11.2
     postRenderers: []
 
 istiogateway:
-  enabled: false
+  enabled: true
 
 gatekeeper:
-  enabled: false
+  enabled: true
   values:
     replicas: 1
     resources:
@@ -110,25 +116,92 @@ gatekeeper:
           - default
 
 kiali:
-  enabled: false
+  enabled: true
 
 jaeger:
-  enabled: false
+  enabled: true
 
 logging:
-  enabled: false
-
-fluentbit:
-  enabled: false
-
-clusterAuditor:
-  enabled: false
+  enabled: true
+  values:
+    elasticsearch:
+      master:
+        count: 1
+        persistence:
+          size: 5Gi
+        resources:
+          requests:
+            cpu: .5
+          limits:
+            cpu: 2
+      data:
+        count: 1
+        persistence:
+          size: 5Gi
+        resources:
+          requests:
+            cpu: .5
+          limits:
+            cpu: 2
 
 monitoring:
-  enabled: false
+  enabled: true
+  values:
+    alertmanager:
+      alertmanagerSpec:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+#    prometheusOperator:
+#      resources:
+#        requests:
+#          cpu: 250m
+#          memory: 400Mi
+    prometheus:
+      prometheusSpec:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits:
+            cpu: 2
+    grafana:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+    kubeStateMetrics:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 32Mi
+    nodeExporter:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 30Mi
 
 eckoperator:
   enabled: false
 
 twistlock:
   enabled: false
+
+fluentbit:
+  enabled: true
+  values:
+    securityContext:
+      privileged: true
+
+clusterAuditor:
+  enabled: true
+  values:
+    resources:
+      requests:
+        cpu: 100m
+        memory: .5Gi
+
+#addons:
+#  argocd:
+#    enabled: true

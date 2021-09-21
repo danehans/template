@@ -9,7 +9,7 @@ flux:
     cleanupOnFail: false
 
 istiooperator:
-  enabled: true
+  enabled: false
   git:
     repo: https://github.com/danehans/istio-operator.git
     path: "./chart"
@@ -19,7 +19,7 @@ istiooperator:
     tag: 1.11.1
 
 istio:
-  enabled: true
+  enabled: false
   git:
     repo: https://github.com/danehans/istio-controlplane.git
     path: "./chart"
@@ -27,25 +27,8 @@ istio:
     branch: revision_support
   ingressGateways:
     public-ingressgateway:
-      type: "NodePort"
-      kubernetesResourceSpec:
-        service:
-          ports:
-          - name: status-port
-            nodePort: 30148
-            port: 15021
-            protocol: TCP
-            targetPort: 15021
-          - name: http2
-            nodePort: 30080
-            port: 80
-            protocol: TCP
-            targetPort: 8080
-          - name: https
-            nodePort: 30443
-            port: 443
-            protocol: TCP
-            targetPort: 8443
+      type: "LoadBalancer"
+      kubernetesResourceSpec: {}
   values:
     tag: 1.11.1
   controlplanes:
@@ -58,31 +41,14 @@ istio:
         branch: revision_support
       ingressGateways:
         public-ingressgateway:
-          type: "NodePort"
-          kubernetesResourceSpec:
-            service:
-              ports:
-              - name: status-port
-                nodePort: 30148
-                port: 15021
-                protocol: TCP
-                targetPort: 15021
-              - name: http2
-                nodePort: 30080
-                port: 80
-                protocol: TCP
-                targetPort: 8080
-              - name: https
-                nodePort: 30443
-                port: 443
-                protocol: TCP
-                targetPort: 8443
+          type: "LoadBalancer"
+          kubernetesResourceSpec: {}
       flux: { }
       values:
         tag: 1.11.1
       postRenderers: [ ]
     1-11-2:
-      enabled: false
+      enabled: true
       revision: 1-11-2
       git:
         repo: https://github.com/danehans/istio-controlplane.git
@@ -91,25 +57,8 @@ istio:
         branch: revision_support
       ingressGateways:
         public-ingressgateway:
-          type: "NodePort"
-          kubernetesResourceSpec:
-            service:
-              ports:
-              - name: status-port
-                nodePort: 30148
-                port: 15021
-                protocol: TCP
-                targetPort: 15021
-              - name: http2
-                nodePort: 30080
-                port: 80
-                protocol: TCP
-                targetPort: 8080
-              - name: https
-                nodePort: 30443
-                port: 443
-                protocol: TCP
-                targetPort: 8443
+          type: "LoadBalancer"
+          kubernetesResourceSpec: {}
       flux: { }
       values:
         tag: 1.11.2
@@ -127,7 +76,7 @@ istio:
       flux: { }
       postRenderers: []
     1-11-2:
-      enabled: false
+      enabled: true
       revision: 1-11-2
       git:
         repo: https://github.com/danehans/istio-operator.git
@@ -140,7 +89,7 @@ istio:
       postRenderers: []
 
 gatekeeper:
-  enabled: false
+  enabled: true
   values:
     replicas: 1
     resources:
@@ -156,21 +105,76 @@ gatekeeper:
           - default
 
 kiali:
-  enabled: false
+  enabled: true
 
 jaeger:
-  enabled: false
+  enabled: true
 
 logging:
   enabled: false
+  values:
+    elasticsearch:
+      master:
+        count: 1
+        persistence:
+          size: 5Gi
+        resources:
+          requests:
+            cpu: .5
+          limits:
+            cpu: 2
+      data:
+        count: 1
+        persistence:
+          size: 5Gi
+        resources:
+          requests:
+            cpu: .5
+          limits:
+            cpu: 2
+
+monitoring:
+  enabled: true
+  values:
+    alertmanager:
+      alertmanagerSpec:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+#    prometheusOperator:
+#      resources:
+#        requests:
+#          cpu: 250m
+#          memory: 400Mi
+    prometheus:
+      prometheusSpec:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits:
+            cpu: 2
+    grafana:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+    kubeStateMetrics:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 32Mi
+    nodeExporter:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 30Mi
 
 fluentbit:
   enabled: false
 
 clusterAuditor:
-  enabled: false
-
-monitoring:
   enabled: false
 
 eckoperator:

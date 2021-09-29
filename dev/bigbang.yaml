@@ -12,7 +12,7 @@ spec:
   interval: 30s
   url: https://github.com/danehans/template.git
   ref:
-    branch: issue_587
+    branch: issue_587_gke
   secretRef:
     name: private-git
 ---

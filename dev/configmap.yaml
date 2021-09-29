@@ -9,22 +9,22 @@ flux:
     cleanupOnFail: false
 
 istiooperator:
-  enabled: true
+  enabled: false
   git:
-    repo: https://github.com/danehans/istio-operator.git
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
     path: "./chart"
     tag: null
-    branch: revision
+    branch: main
   values:
     tag: 1.11.1
 
 istio:
-  enabled: true
+  enabled: false
   git:
-    repo: https://github.com/danehans/istio-controlplane.git
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
     path: "./chart"
     tag: null
-    branch: revision_support
+    branch: issue_54
   ingressGateways:
     public-ingressgateway:
       type: "NodePort"
@@ -52,10 +52,10 @@ istio:
     default:
       enabled: false
       git:
-        repo: https://github.com/danehans/istio-controlplane.git
+        repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
         path: "./chart"
         tag: null
-        branch: revision_support
+        branch: issue_54
       ingressGateways:
         public-ingressgateway:
           type: "NodePort"
@@ -82,13 +82,13 @@ istio:
         tag: 1.11.1
       postRenderers: [ ]
     1-11-2:
-      enabled: false
+      enabled: true
       revision: 1-11-2
       git:
-        repo: https://github.com/danehans/istio-controlplane.git
+        repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
         path: "./chart"
         tag: null
-        branch: revision_support
+        branch: issue_54
       ingressGateways:
         public-ingressgateway:
           type: "NodePort"
@@ -117,22 +117,22 @@ istio:
     default:
       enabled: false
       git:
-        repo: https://github.com/danehans/istio-operator.git
+        repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
         path: "./chart"
         tag: null
-        branch: revision
+        branch: main
       values:
         tag: 1.11.1
       flux: { }
       postRenderers: []
     1-11-2:
-      enabled: false
+      enabled: true
       revision: 1-11-2
       git:
-        repo: https://github.com/danehans/istio-operator.git
+        repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
         path: "./chart"
         tag: null
-        branch: revision
+        branch: main
       values: { }
       flux: { }
       postRenderers: []
@@ -154,7 +154,7 @@ gatekeeper:
           - default
 
 kiali:
-  enabled: false
+  enabled: true
 
 jaeger:
   enabled: false

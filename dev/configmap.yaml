@@ -9,22 +9,14 @@ flux:
     cleanupOnFail: false
 
 istiooperator:
-  enabled: false
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
-    path: "./chart"
-    tag: null
-    branch: main
+  enabled: true
   values:
-    tag: 1.11.1
+    tag: 1.11.2
 
 istio:
-  enabled: false
-  git:
-    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
-    path: "./chart"
-    tag: null
-    branch: issue_54
+  enabled: true
+  values:
+    tag: 1.11.2
   ingressGateways:
     public-ingressgateway:
       type: "NodePort"
@@ -46,16 +38,9 @@ istio:
             port: 443
             protocol: TCP
             targetPort: 8443
-  values:
-    tag: 1.11.1
   controlplanes:
     default:
       enabled: false
-      git:
-        repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
-        path: "./chart"
-        tag: null
-        branch: issue_54
       ingressGateways:
         public-ingressgateway:
           type: "NodePort"
@@ -79,16 +64,15 @@ istio:
                 targetPort: 8443
       flux: { }
       values:
-        tag: 1.11.1
+        tag: 1.11.2
       postRenderers: [ ]
-    1-11-2:
-      enabled: true
-      revision: 1-11-2
+    1-11-3:
+      enabled: false
+      revision: 1-11-3
       git:
         repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
         path: "./chart"
-        tag: null
-        branch: issue_54
+        tag: 1.11.3-bb.0
       ingressGateways:
         public-ingressgateway:
           type: "NodePort"
@@ -116,23 +100,17 @@ istio:
   operators:
     default:
       enabled: false
-      git:
-        repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
-        path: "./chart"
-        tag: null
-        branch: main
       values:
-        tag: 1.11.1
+        tag: 1.11.2
       flux: { }
       postRenderers: []
-    1-11-2:
-      enabled: true
-      revision: 1-11-2
+    1-11-3:
+      enabled: false
+      revision: 1-11-3
       git:
         repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
         path: "./chart"
-        tag: null
-        branch: main
+        tag: 1.11.3-bb.0
       values: { }
       flux: { }
       postRenderers: []
@@ -154,7 +132,7 @@ gatekeeper:
           - default
 
 kiali:
-  enabled: true
+  enabled: false
 
 jaeger:
   enabled: false
